@@ -67,11 +67,9 @@ SELECT customerNumber,customerName FROM customers WHERE customerNumber NOT IN
 # Obten el máximo, mínimo y promedio del número de productos en las órdenes de 
 # venta.
 DESCRIBE orderdetails;
-SELECT orderNumber,max(quantityOrdered) Máximo,min(quantityOrdered) Mínimo,
-	avg(quantityOrdered) Promedio FROM orderdetails GROUP BY orderNumber;
+SELECT max(quantity) Máximo,min(quantity) Mínimo, avg(quantity) Promedio 
+	FROM (SELECT orderNumber,sum(quantityOrdered) quantity 
+		FROM orderdetails GROUP BY orderNumber) AS a;
 # Dentro de la tabla orders, obten el número de órdenes que hay por cada estado.
 DESCRIBE orders;
-DESCRIBE customers;
-SELECT * FROM orders;
-SELECT state, count(*) Orders FROM customers WHERE customerNumber IN 
-	(SELECT customerNumber FROM orders) GROUP BY state ORDER BY Orders DESC;
+SELECT status, count(*) Orders FROM orders GROUP BY status ORDER BY Orders DESC;
