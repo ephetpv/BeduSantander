@@ -1,0 +1,72 @@
+
+RETO 1
+
+	#1
+{
+ filter: {
+  house_rules: RegExp('no parties', i)
+ }
+}
+
+	#2
+{
+ filter: {
+  house_rules: RegExp('pets allowed', i)
+ }
+}
+
+	#3
+{
+ filter: {
+  house_rules: RegExp('no smoking', i)
+ }
+}
+
+	#4
+{
+ filter: {
+  $and: [
+   {
+    house_rules: RegExp('no parties', i)
+   },
+   {
+    house_rules: RegExp('no smoking', i)
+   }
+  ]
+ }
+}
+
+
+RETO 2
+
+{
+ filter: {
+  number_of_reviews: {
+   $gte: 50
+  },
+  'review_scores.review_scores_rating': {
+   $gte: 80
+  },
+  amenities: {
+   $in: [
+    RegExp('Ethernet', i)
+   ]
+  },
+  'address.country': 'Brazil'
+ }
+}
+
+RETO 3
+
+[{$match: {
+  amenities: {$in:["Wifi",/Ethernet/]}
+}}, {$group: {
+  _id: null,
+  Publicaciones: {
+    $sum: 1
+  }
+}}]
+
+
+
+
