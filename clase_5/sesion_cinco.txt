@@ -59,10 +59,10 @@ RETO 2
 RETO 3
 
 [{$match: {
-  amenities: {$in:["Wifi",/Ethernet/]}
+  amenities: {$in:["Wifi","Ethernet","Internet"]}
 }}, {$group: {
   _id: null,
-  Publicaciones: {
+  num_publicaciones: {
     $sum: 1
   }
 }}]

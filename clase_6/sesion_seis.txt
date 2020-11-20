@@ -1,0 +1,44 @@
+
+RETO 1
+
+
+[{$match: {
+  property_type:"House",
+  bedrooms:{$gte:1}
+}}, {$addFields: {
+  costo_recamara: {$divide:["$price","$bedrooms"]}
+}}, {$group: {
+  _id: "$address.country",
+  recamaras: {
+    $sum: "$bedrooms"
+  },
+  num_pub:{
+    $sum:1
+  },
+  total: {
+     $sum: "$costo_recamara"
+  }
+}}, {$addFields: {
+costo_prom: {$divide:["$total", "$recamaras"]}
+}}, {$project: {
+  _id:1,
+  num_pub:1,
+  costo_prom:1
+}}]
+
+	RETO 2 
+
+[{$lookup: {
+  from: 'users',
+  localField: 'email',
+  foreignField: 'email',
+  as: 'user'
+}}, {$addFields: {
+  user_object:{$arrayElemAt:["$user",0]}
+}}, {$addFields: {
+  user_password: "$user_object.password"
+}}, {$project: {
+  _id:0,
+  email:1,
+  user_password:1
+}}]
