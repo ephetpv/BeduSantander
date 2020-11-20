@@ -1,0 +1,21 @@
+
+Ejercicio 
+
+[{$unwind: {
+  path: "$countries",
+  preserveNullAndEmptyArrays: true
+}}, {$unwind: {
+  path: "$genres",
+  preserveNullAndEmptyArrays: true
+}}, {$group: {
+  _id: {country:"$countries",genre:"$genres"},
+  count:{$sum:1}
+}}, {$set: {
+  country: "$_id.country",
+  genre: "$_id.genre"
+}}, {$project: {
+  _id:0,
+  count:1,
+  country:1,
+  genre:1
+}}]
