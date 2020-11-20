@@ -86,7 +86,7 @@ EJERCICIOS
 }
 
 	#9
-
+Todos los posts tienen 50 comentarios
 
 	#10
 {
@@ -132,5 +132,7 @@ EJERCICIOS
 }
 
 	#12
+Todos los posts tienen 50 comentarios
 
 	#13
+Todos los posts tienen 50 comentarios
